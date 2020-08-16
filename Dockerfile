@@ -3,11 +3,15 @@
 FROM rust:stretch as builder
 WORKDIR /usr/src/myapp
 COPY . .
+
 # RUN cargo install --path .
 RUN cargo install \
     wasm-pack \
     cargo-make \
     simple-http-server
+
+# run the build commands in Makefil.toml
+RUN cargo make build
 
 FROM rust:slim-stretch
 # COPY --from=builder /usr/local/cargo/bin/? /usr/local/bin/?

@@ -1,19 +1,21 @@
 image: alpine/edge
 secrets:
-- 1b3fe3d9-ee86-4c7e-bd35-d0c87b6e12a9
+  - 1b3fe3d9-ee86-4c7e-bd35-d0c87b6e12a9
 environment:
-    REPO_NAME: rust-wasm-yew-single-page-application
-    DOCKER_HUB_USER: aaronkelly
+  REPO_NAME: rust-wasm-yew-single-page-application
+  DOCKER_HUB_USER: aaronkelly
 sources:
-- git+ssh://git@git.sr.ht/~aaronkelly/rust-wasm-yew-single-page-application
+  - git+ssh://git@git.sr.ht/~aaronkelly/rust-wasm-yew-single-page-application
+packages:
+  - docker
 tasks:
-- setup-docker: |-
-    sudo service docker start && sleep 10
-    sudo addgroup $(id -u -n) docker
-- build-image: |-
-    cd "$REPO_NAME"
-    docker build -t "$DOCKER_HUB_USER"/"$REPO_NAME" .
-- push-to-dockerhub: |-
-    docker login --username "$DOCKER_HUB_USER" \
-      --password $(cat ~/DOCKER_HUB_PASS)
-    docker push "$DOCKER_HUB_USER"/"$REPO
+  - setup-docker: |-
+      sudo service docker start && sleep 10
+      sudo addgroup $(id -u -n) docker
+  - build-image: |-
+      cd "$REPO_NAME"
+      docker build -t "$DOCKER_HUB_USER"/"$REPO_NAME" .
+  - push-to-dockerhub: |-
+      docker login --username "$DOCKER_HUB_USER" \
+        --password $(cat ~/DOCKER_HUB_PASS)
+      docker push "$DOCKER_HUB_USER"/"$REPO
