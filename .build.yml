@@ -19,4 +19,4 @@ tasks:
   - push-to-dockerhub: |-
       docker login --username "$DOCKER_HUB_USER" \
         --password $(cat ~/DOCKER_HUB_PASS)
-      docker push "$DOCKER_HUB_USER"/"$REPO
+      docker push "$DOCKER_HUB_USER"/"$REPO_NAME"

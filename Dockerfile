@@ -13,7 +13,7 @@ RUN cargo install \
 RUN cargo make build
 # RUN cargo build --release
 
-FROM rust:slim-stretch
+# FROM rust:slim-stretch
 # COPY --from=builder /usr/local/cargo/bin/? /usr/local/bin/?
 # WORKDIR /usr/local/bin
 # ENTRYPOINT ["./entrypoint.sh"]
