@@ -1,6 +1,7 @@
 image: alpine/edge
 secrets:
   - 1b3fe3d9-ee86-4c7e-bd35-d0c87b6e12a9
+  - a21aaecc-c71f-44b7-bd5e-360064646011
 environment:
   REPO_NAME: rust-wasm-yew-single-page-application
   DOCKER_HUB_USER: aaronkelly
