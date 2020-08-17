@@ -10,7 +10,7 @@ packages:
   - docker
 tasks:
   - setup-docker: |-
-      sudo service docker start && sleep 10
+      sudo service docker start && sleep 5
       sudo addgroup $(id -u -n) docker
   - build-image: |-
       cd "$REPO_NAME"

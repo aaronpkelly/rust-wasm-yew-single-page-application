@@ -10,10 +10,10 @@ RUN cargo install \
     cargo-make \
     simple-http-server
 
-# run the build commands in Makefil.toml
 RUN cargo make build
+# RUN cargo build --release
 
 FROM rust:slim-stretch
 # COPY --from=builder /usr/local/cargo/bin/? /usr/local/bin/?
 # WORKDIR /usr/local/bin
-# CMD ["./?"]
+# ENTRYPOINT ["./entrypoint.sh"]
