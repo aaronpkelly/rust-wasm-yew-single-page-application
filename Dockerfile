@@ -13,8 +13,11 @@ RUN cargo install \
 RUN cargo make build
 # RUN cargo build --release
 
-FROM rust:slim-stretch
-COPY --from=builder /usr/src/myapp/static /app/static
-COPY --from=builder /usr/src/myapp/index.html /app/static/index.html
+# compilation takes forever and the image is HUGE so I'm trying to just
+# copy the static website WASM files + a index.html
+# FROM rust:slim-stretch
+FROM nginx
+COPY --from=builder /usr/src/myapp/static /usr/share/nginx/html
+COPY --from=builder /usr/src/myapp/index.html /usr/share/nginx/html/index.html
 WORKDIR /app
-ENTRYPOINT ["cargo", "make", "serve"]
+ENTRYPOINT ["nginx"]
