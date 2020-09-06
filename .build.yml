@@ -11,9 +11,10 @@ packages:
   - docker
 tasks:
   - setup-docker: |-
-      sudo service docker start && timeout -t 15 sh -c 'until docker info; do echo .; sleep1; done'
-      sudo addgroup $(id -u -n) docker
+      sudo service docker start && \
+              sudo addgroup $(id -u -n) docker
   - build-image: |-
+      sleep 5
       cd "$REPO_NAME"
       docker build -t "$DOCKER_HUB_USER"/"$REPO_NAME" .
   - push-to-dockerhub: |-
