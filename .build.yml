@@ -11,7 +11,7 @@ packages:
   - docker
 tasks:
   - setup-docker: |-
-      sudo service docker start && sleep 5
+      sudo service docker start && timeout -t 15 sh -c 'until docker info; do echo .; sleep1; done'
       sudo addgroup $(id -u -n) docker
   - build-image: |-
       cd "$REPO_NAME"
