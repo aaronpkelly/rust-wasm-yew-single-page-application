@@ -12,9 +12,9 @@ packages:
 tasks:
   - setup-docker: |-
       sudo service docker start && \
-              sudo addgroup $(id -u -n) docker
+              sudo addgroup $(id -u -n) docker && \
+              ping www.duckduckgo.com -w 5
   - build-image: |-
-      sleep 5
       cd "$REPO_NAME"
       docker build -t "$DOCKER_HUB_USER"/"$REPO_NAME" .
   - push-to-dockerhub: |-
