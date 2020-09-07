@@ -8,7 +8,9 @@ i'm tracking my progress here: https://todo.sr.ht/~aaronkelly/webdev/8
 
 # usage
 
-see `.aliases`
+see `.aliases` for building and running the dockerfiles
+
+go to `http://localhost/` when the container is running
 
 # about the dockerfile
 

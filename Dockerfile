@@ -26,5 +26,9 @@ RUN cargo make
 FROM nginx
 COPY --from=builder /usr/src/myapp/static /usr/share/nginx/html
 COPY --from=builder /usr/src/myapp/index.html /usr/share/nginx/html/index.html
+
+# need to add the application/wasm mime type to NGINX - it doesn't come with it by default!
+RUN sed -i '97i application/wasm wasm;' /etc/nginx/mime.types
+
 ENTRYPOINT ["nginx"]
 CMD ["-g", "daemon off;"]

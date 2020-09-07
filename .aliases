@@ -1,3 +1,3 @@
 alias b='docker build -t aaronkelly/rust-wasm-yew-single-page-application .'
-alias r='docker run --name rust-wasm-yew -d -p 8080:80 aaronkelly/rust-wasm-yew-single-page-application'
+alias r='docker run --name rust-wasm-yew --rm -d -p 80:80 aaronkelly/rust-wasm-yew-single-page-application'
 alias s='docker stop rust-wasm-yew'
