@@ -1,3 +1,7 @@
+# demo
+
+It's on Vultr: http://95.179.158.61:80
+
 # about
 
 a project to develop my rust skills
