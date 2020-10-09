@@ -10,14 +10,12 @@ sources:
 packages:
   - docker
 tasks:
-  - setup-docker: |-
-      sudo service docker start && \
-              sudo addgroup $(id -u -n) docker && \
-              ping www.ddg.gg -c 5 -w 5 || true
-  - build-image: |-
-      cd "$REPO_NAME"
-      docker build -t "$DOCKER_HUB_USER"/"$REPO_NAME" .
-  - push-to-dockerhub: |-
-      docker login --username "$DOCKER_HUB_USER" \
-        --password $(cat ~/DOCKER_HUB_PASS)
-      docker push "$DOCKER_HUB_USER"/"$REPO_NAME"
+  - configure-git: |-
+      git config --global user.email "aaronkelly@fastmil.com"
+      git config --global user.name "Aaron Kelly"
+  - push-to-github: |-
+      echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+      cd ${REPO_NAME}
+      git checkout master
+      git remote set-url origin git@github.com:aaronpkelly/rust-wasm-yew-single-page-application.git
+      git push -u origin master
